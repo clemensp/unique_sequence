@@ -15,25 +15,21 @@ module UniqueSequence
     end
 
     def self.check_sum(digits)
-      digits.inject do |sum, digit|
-        sum += digit
-      end == 15
+      digits.inject(:+) == 15
     end
 
     def self.check_repeating_digit(digits)
       digits.sort.inject do |previous, current|
         break true if previous == current
-      end ? true : false
+        current
+      end == true ? true : false
     end
 
     def self.check_digits_appearing_less_than_three_times(digits)
-      count_set = digits.inject(Hash.new(0)) do |count_set, digit|
+      digits.inject(Hash.new(0)) do |count_set, digit|
         count_set[digit.to_s] += 1
         count_set
-      end
-      count_set.find do |key, value|
-        value > 2
-      end ? false : true
+      end.find { |key, value| value > 2 } ? false : true
     end
   end
 end

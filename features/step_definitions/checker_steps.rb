@@ -13,3 +13,15 @@ end
 Then /^it should be invalid$/ do
   @result.should be_false
 end
+
+Given /^a new generator$/ do
+  @generator = UniqueSequence::Generator.new
+end
+
+When /^I ask for a unique sequence$/ do
+  @sequence = @generator.get_next
+end
+
+Then /^I should receive a valid unique sequence$/ do
+  UniqueSequence::Checker.check(@sequence).should be_true
+end

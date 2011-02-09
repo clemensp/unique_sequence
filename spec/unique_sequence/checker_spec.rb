@@ -29,5 +29,12 @@ module UniqueSequence
         end
       end
     end
+
+    describe "#check_repeating_digit" do
+      it "should be true if there are repeating digits" do
+        Checker.check_repeating_digit([1,3,3]).should be_true
+        Checker.check_repeating_digit([1,3,3,4]).should be_true
+      end
+    end
   end
 end
